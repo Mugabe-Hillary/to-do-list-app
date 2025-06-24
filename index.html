@@ -4,31 +4,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tickled Tasks
-  </title>
+  <meta name="description"
+    content="A simple and intuitive task management application to help you stay organized and productive.">
+  <title>Tickled Tasks</title>
   <link rel="icon" type="image/png" href="/assets/check.png">
 </head>
 
 <body>
+  <!-- Header Section -->
   <header>
     <h1>Tickled Tasks</h1>
+    <!-- Navigation Bar -->
+    <nav class="filters" aria-label="Task filters">
+      <ul>
+        <li><button type="button" data-filter="all" class="filter-btn">All</button></li>
+        <li><button type="button" data-filter="active" class="filter-btn">Active</button></li>
+        <li><button type="button" data-filter="completed" class="filter-btn">Completed</button></li>
+      </ul>
+    </nav>
   </header>
-  <nav>
-    <ul>
-      <li><a href="#" data-filter="all">All</a></li>
-      <li><a href="#" data-filter="active">Active</a></li>
-      <li><a href="#" data-filter="completed">Completed</a></li>
-    </ul>
-  </nav>
-  <section>
 
-  </section>
-  <section>
+  <!-- Main Content -->
+  <main>
+    <!-- Task List Container -->
+    <section class="task-list">
+      <ul id="tasks-container">
+        <!-- Empty State (Initial View) -->
+        <li class="empty-state">
+          <p>No tasks yet. Tap + to add!</p>
+        </li>
+        <!-- Dynamic Task Template (hidden) -->
+        <template id="task-template">
+          <li class="task" data-id="">
+            <input type="checkbox" class="task-checkbox">
+            <span class="task-text"></span>
+            <div class="task-actions">
+              <button class="edit-btn" aria-label="Edit task">✏️</button>
+              <button class="delete-btn" aria-label="Delete task">🗑️</button>
+            </div>
+          </li>
+        </template>
+      </ul>
+    </section>
+  </main>
 
-  </section>
-  <footer>
+  <!-- Floating Action Button -->
+  <button id="fab" class="fab" aria-label="Add new task">+</button>
 
-  </footer>
+  <!-- Task Input Modal -->
+  <div class="modal hidden" id="task-modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <form id="task-form">
+        <h2 id="modal-title">Add New Task</h2>
+        <label for="task-input">Task Description:</label>
+        <input type="text" id="task-input" placeholder="What needs to be done?" required aria-required="true">
+        <div class="form-actions">
+          <button type="button" id="cancel-btn">Cancel</button>
+          <button type="submit">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="scripts/app.js"></script>
 </body>
 
 </html>
