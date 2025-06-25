@@ -1,0 +1,241 @@
+/* Responsive Styles - Media Queries for Common Devices */
+
+/* Base styles are mobile-first (320px+) */
+
+/* Small Mobile Devices (320px - 374px) */
+@media (max-width: 374px) {
+  .header-content {
+    padding: 0 var(--spacing-sm);
+  }
+
+  main {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+  }
+
+  .task-list {
+    padding: var(--spacing-md);
+  }
+
+  .fab {
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 48px;
+    height: 48px;
+    font-size: var(--font-size-xl);
+  }
+
+  .modal-content {
+    padding: var(--spacing-md);
+    margin: var(--spacing-md);
+  }
+
+  .nav-content {
+    width: min(260px, 90vw);
+  }
+}
+
+/* Large Mobile Devices (375px - 767px) */
+@media (min-width: 375px) and (max-width: 767px) {
+  .header-content h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  .task {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .task-actions {
+    opacity: 1;
+    /* Always visible on mobile */
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+/* Tablets Portrait (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  main {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+
+  .task-list {
+    padding: var(--spacing-xl);
+  }
+
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .task {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .fab {
+    width: 64px;
+    height: 64px;
+    font-size: var(--font-size-3xl);
+  }
+
+  .nav-content {
+    width: var(--nav-width);
+  }
+}
+
+/* Tablets Landscape & Small Desktops (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .header-content {
+    padding: 0 var(--spacing-xl);
+  }
+
+  main {
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
+  }
+
+  .task-list {
+    padding: var(--spacing-2xl);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .task {
+    padding: var(--spacing-lg);
+  }
+
+  .modal-content {
+    max-width: 500px;
+  }
+}
+
+/* Large Desktops (1440px+) */
+@media (min-width: 1440px) {
+  .header-content {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  main {
+    padding-left: var(--spacing-2xl);
+    padding-right: var(--spacing-2xl);
+    max-width: 1000px;
+  }
+
+  .task-list {
+    padding: var(--spacing-2xl);
+  }
+
+  .task {
+    padding: var(--spacing-lg) var(--spacing-xl);
+  }
+
+  .fab {
+    bottom: var(--spacing-2xl);
+    right: var(--spacing-2xl);
+  }
+
+  .modal-content {
+    max-width: 600px;
+    padding: var(--spacing-2xl);
+  }
+}
+
+/* Ultra-wide Screens (1920px+) */
+@media (min-width: 1920px) {
+  main {
+    max-width: 1200px;
+  }
+
+  .header-content {
+    max-width: 1400px;
+  }
+}
+
+/* Landscape Mobile Devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .fab {
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 48px;
+    height: 48px;
+  }
+
+  .modal-content {
+    margin: var(--spacing-sm);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  main {
+    padding-top: calc(var(--header-height) + var(--spacing-md));
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .task-checkbox::after {
+    font-size: 12px;
+    left: 2px;
+    top: -3px;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .nav-content,
+  .nav-overlay,
+  .modal-content {
+    transition: none !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+
+  .menu-toggle,
+  .theme-toggle,
+  .fab,
+  .nav-menu,
+  .task-actions,
+  .modal {
+    display: none !important;
+  }
+
+  main {
+    padding-top: 0;
+    margin: 0;
+    max-width: none;
+  }
+
+  .task-list {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .task {
+    break-inside: avoid;
+  }
+}

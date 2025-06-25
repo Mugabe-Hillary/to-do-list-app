@@ -1,0 +1,367 @@
+/* Animation Styles - Keyframes & Motion */
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  80% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Animation Classes */
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.2s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 0.6s ease-in-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Component Animations */
+
+/* Task animations */
+.task {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.task.removing {
+  animation: slideInRight 0.3s ease-in reverse;
+}
+
+.task.completed {
+  animation: pulse 0.3s ease-out;
+}
+
+/* FAB animations */
+.fab {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+/* Modal animations */
+.modal:not(.hidden) {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal:not(.hidden) .modal-content {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Navigation animations */
+.nav-menu.active .nav-overlay {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.nav-menu.active .nav-content {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+/* Filter button animations */
+.filter-btn.active {
+  animation: pulse 0.3s ease-out;
+}
+
+/* Theme toggle animation */
+.theme-toggle {
+  transition: transform var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  transform: rotate(180deg);
+}
+
+/* Loading animations */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* Hover animations */
+.hover-lift {
+  transition: transform var(--transition-fast);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-fast);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px var(--primary-blue);
+}
+
+/* Stagger animations for lists */
+.stagger-children>* {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.stagger-children>*:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.stagger-children>*:nth-child(2) {
+  animation-delay: 50ms;
+}
+
+.stagger-children>*:nth-child(3) {
+  animation-delay: 100ms;
+}
+
+.stagger-children>*:nth-child(4) {
+  animation-delay: 150ms;
+}
+
+.stagger-children>*:nth-child(5) {
+  animation-delay: 200ms;
+}
+
+.stagger-children>*:nth-child(6) {
+  animation-delay: 250ms;
+}
+
+.stagger-children>*:nth-child(7) {
+  animation-delay: 300ms;
+}
+
+.stagger-children>*:nth-child(8) {
+  animation-delay: 350ms;
+}
+
+/* Success/Error animations */
+.success {
+  animation: bounce 0.6s ease-in-out;
+}
+
+.error {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Micro-interactions */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.ripple-effect:active::before {
+  width: 200px;
+  height: 200px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Page transitions */
+.page-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.page-transition.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibility: Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-fadeIn,
+  .animate-slideInLeft,
+  .animate-slideInRight,
+  .animate-scaleIn,
+  .animate-bounce,
+  .animate-pulse,
+  .animate-shake,
+  .task,
+  .fab,
+  .modal:not(.hidden),
+  .nav-menu.active .nav-overlay,
+  .nav-menu.active .nav-content,
+  .filter-btn.active,
+  .loading::after,
+  .stagger-children>* {
+    animation: none !important;
+    animation-delay: 0ms !important;
+  }
+
+  .theme-toggle:hover {
+    transform: none;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+}

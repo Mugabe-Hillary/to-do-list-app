@@ -8,19 +8,36 @@
     content="A simple and intuitive task management application to help you stay organized and productive.">
   <title>Tickled Tasks</title>
   <link rel="icon" type="image/png" href="/assets/check.png">
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
   <!-- Header Section -->
   <header>
-    <h1>Tickled Tasks</h1>
-    <!-- Navigation Bar -->
-    <nav class="filters" aria-label="Task filters">
-      <ul>
-        <li><button type="button" data-filter="all" class="filter-btn">All</button></li>
-        <li><button type="button" data-filter="active" class="filter-btn">Active</button></li>
-        <li><button type="button" data-filter="completed" class="filter-btn">Completed</button></li>
-      </ul>
+    <div class="header-content">
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+      <h1>Tickled Tasks</h1>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+
+    <!-- Sliding Navigation Bar -->
+    <nav id="nav-menu" class="nav-menu" aria-label="Task filters">
+      <div class="nav-overlay"></div>
+      <div class="nav-content">
+        <div class="nav-header">
+          <h2>Filters</h2>
+          <button id="nav-close" class="nav-close" aria-label="Close navigation">&times;</button>
+        </div>
+        <ul class="nav-list">
+          <li><button type="button" data-filter="all" class="filter-btn active">All Tasks</button></li>
+          <li><button type="button" data-filter="active" class="filter-btn">Active</button></li>
+          <li><button type="button" data-filter="completed" class="filter-btn">Completed</button></li>
+        </ul>
+      </div>
     </nav>
   </header>
 
