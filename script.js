@@ -4,9 +4,18 @@ const form = document.querySelector("#task-form");
 const taskInput = document.querySelector("#task-input");
 const taskList = document.querySelector("#task-list");
 
-// --- STATE ---
-// Global tasks array variable for data persistance.
-let tasks = [];
+// --- LOADING LOGIC ---
+// Load the tasks from local storage and parse Or initialize tasks array.
+let tasks;
+const savedTasks = localStorage.getItem("tasks");
+if (savedTasks) {
+  tasks = JSON.parse(savedTasks);
+} else {
+  tasks = [];
+}
+
+// Initial Render of the tasks
+renderTasks();
 
 // --- FUNCTIONS ---
 // Dynamically update the task list( erase and add new tasks)
@@ -29,8 +38,13 @@ function addTask(taskText) {
   };
 
   tasks.push(newTask);
-
+  saveTasks();
   renderTasks();
+}
+
+// Save the tasks to the local storage of the browser.
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // --- EVENT LISTENERS ---
