@@ -22,9 +22,20 @@ renderTasks();
 function renderTasks() {
   taskList.innerHTML = "";
 
-  tasks.forEach(function(task) {
+  tasks.forEach(function (task) {
     const li = document.createElement("li");
-    li.innerText = task.text;
+    li.setAttribute("data-id", task.id);
+
+    const taskTextSpan = document.createElement("span");
+    taskTextSpan.innerText = task.text;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "-";
+    deleteBtn.classList.add("delete-btn");
+
+    li.appendChild(taskTextSpan);
+    li.appendChild(deleteBtn);
+
     taskList.appendChild(li);
   });
 }
@@ -42,23 +53,37 @@ function addTask(taskText) {
   renderTasks();
 }
 
+function deleteTask(taskId) {
+  tasks = tasks.filter(function (task) {
+    return task.id !== Number(taskId);
+  });
+  saveTasks();
+  renderTasks();
+}
+
 // Save the tasks to the local storage of the browser.
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // --- EVENT LISTENERS ---
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function (event) {
   event.preventDefault();
   const taskText = taskInput.value.trim();
 
   if (taskText !== "") {
     addTask(taskText);
-    taskInput.value = "";
-    taskInput.focus();
   } else {
     alert("Please enter a valid task!");
-    taskInput.value = "";
-    taskInput.focus();
+  }
+  taskInput.value = "";
+  taskInput.focus();
+});
+
+taskList.addEventListener("click", function (event) {
+  if (event.target.classList.contains("delete-btn")) {
+    const li = event.target.closest("li");
+    const taskId = li.getAttribute("data-id");
+    deleteTask(taskId);
   }
 });
