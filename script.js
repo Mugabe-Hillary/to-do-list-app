@@ -25,6 +25,9 @@ function renderTasks() {
   tasks.forEach(function (task) {
     const li = document.createElement("li");
     li.setAttribute("data-id", task.id);
+    if (task.completed) {
+      li.classList.add("completed");
+    }
 
     const taskTextSpan = document.createElement("span");
     taskTextSpan.innerText = task.text;
@@ -33,6 +36,11 @@ function renderTasks() {
     deleteBtn.innerText = "-";
     deleteBtn.classList.add("delete-btn");
 
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = task.completed;
+
+    li.appendChild(checkbox);
     li.appendChild(taskTextSpan);
     li.appendChild(deleteBtn);
 
@@ -61,6 +69,22 @@ function deleteTask(taskId) {
   renderTasks();
 }
 
+function toggleComplete(taskId) {
+  tasks = tasks.map(function (task) {
+    if (task.id == Number(taskId)) {
+      return {
+        id: task.id,
+        text: task.text,
+        completed: !task.completed,
+      };
+    } else {
+      return task;
+    }
+  });
+  saveTasks();
+  renderTasks();
+}
+
 // Save the tasks to the local storage of the browser.
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -81,9 +105,10 @@ form.addEventListener("submit", function (event) {
 });
 
 taskList.addEventListener("click", function (event) {
+  const taskId = event.target.closest("li").getAttribute("data-id");
   if (event.target.classList.contains("delete-btn")) {
-    const li = event.target.closest("li");
-    const taskId = li.getAttribute("data-id");
     deleteTask(taskId);
+  } else if (event.target.type == "checkbox") {
+    toggleComplete(taskId);
   }
 });
